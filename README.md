@@ -3,6 +3,12 @@
 A demonstration of a **multi-step async KYC workflow** built on Java 21 + Spring Boot 3.4.
 The POC exercises the patterns called out in the source idea (#27):
 
+> **Companion docs:**
+> - [ISSUE.md](ISSUE.md) — the concrete problem, scope, non-goals, acceptance.
+> - [TECHNICAL.md](TECHNICAL.md) — the hard sub-problems, what we protect, solution shape, tech by responsibility, tech debt.
+> - [CONSISTENCY.md](CONSISTENCY.md) — what breaks when you scale to N pods / VMs, and the three-move fix.
+> - [flow.html](src/main/resources/static/flow.html) — interactive walkthrough (served at <http://localhost:8080/flow.html> once the app is running).
+
 - **Explicit state machine** — every transition validated against an allowed-transition table; illegal events throw, they never silently corrupt state.
 - **Async pipeline** — OCR and address verification run on a dedicated executor with simulated latency.
 - **Per-step retry with exponential backoff + jitter** — each step has its own retry budget.
